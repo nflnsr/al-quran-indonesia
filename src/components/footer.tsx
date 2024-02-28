@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="h-[var(--footer-height)]">
-      <div className="flex flex-wrap items-center justify-center px-0.5 pb-1.5 pt-14">
+      <div className="flex flex-wrap items-center justify-center px-1.5 pb-1.5 pt-10 sm:pt-14">
         <p className="inline whitespace-nowrap font-light">Developed by</p>
         <Link
           href="https://github.com/nflnsr"
