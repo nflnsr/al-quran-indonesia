@@ -2,7 +2,7 @@
 import useSWR from "swr";
 
 export const useSurahList = () => {
-  const { data, isLoading, error } = useSWR("/quran-surah");
+  const { data, isLoading, error } = useSWR("/api/quran-surah");
 
   return { data, isLoading, error };
 };
