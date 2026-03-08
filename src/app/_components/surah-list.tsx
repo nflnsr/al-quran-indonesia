@@ -19,17 +19,16 @@ import { useDebounce } from "@/hooks/useDebounce";
 // }
 
 export default function SurahList() {
-  // fetch server
-  // await new Promise((res) => setTimeout(res, 1000))
-  // const data = await fetchSurahList();
-
-  // useSWR
   const { data, isLoading, error } = useSurahList();
   const searchParams = useSearchParams();
   const search = searchParams.get("q") || "";
   const [searchResult, setSearchResult] = useState([]);
 
-  const searchQuery = useDebounce(search, 100);
+  const searchQuery = useDebounce(search, 500);
+
+  useEffect(() => {
+    setTimeout((res) => res, 700);
+  }, []);
 
   useEffect(() => {
     if (searchQuery) {
@@ -49,8 +48,17 @@ export default function SurahList() {
 
   if (isLoading)
     return (
-      <div className="relative min-h-[calc(100vh-var(--header-height)-var(--search-height)-var(--footer-height))] text-center leading-none">
-        <p className="pt-36">Loading...</p>
+      <div className="flex min-h-[calc(100vh-var(--header-height)-var(--search-height)-var(--footer-height))] items-center justify-center">
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex gap-2">
+            <span className="h-3 w-3 animate-bounce rounded-full bg-black [animation-delay:-0.3s] dark:bg-white" />
+            <span className="h-3 w-3 animate-bounce rounded-full bg-black [animation-delay:-0.15s] dark:bg-white" />
+            <span className="h-3 w-3 animate-bounce rounded-full bg-black dark:bg-white" />
+          </div>
+          <p className="text-sm font-medium uppercase tracking-widest text-black dark:text-white">
+            Loading...
+          </p>
+        </div>
       </div>
     );
   if (error) return <div className="text-center">Failed to load</div>;
@@ -59,7 +67,7 @@ export default function SurahList() {
     <div>
       <div className="block h-0.5 w-full bg-lime-800" />
       <p className="py-4 text-center">
-        Total Surah:
+        Total Surah : {" "}
         <span data-item="total-surah">{searchResult?.length}</span>
       </p>
       <div

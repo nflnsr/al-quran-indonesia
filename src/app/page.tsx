@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Search } from "./_components/search";
 import SurahList from "./_components/surah-list";
 import { Suspense } from "react";
+import { Loading } from "@/components/loading";
 
 export const metadata: Metadata = {
   title: "Al-Qur'an Indonesia",
@@ -12,10 +13,10 @@ export default async function Page() {
   // await new Promise((res) => setTimeout(res, 4000));
   return (
     <>
-    <Suspense fallback="...">
+      <Suspense fallback={<Loading />}>
         <Search />
         <SurahList />
-    </Suspense>
+      </Suspense>
     </>
   );
 }
